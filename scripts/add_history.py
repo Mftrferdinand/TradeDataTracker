@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-"""Add completed order to per-asset monthly history file (TABLE format).
-
-Per-asset files: XAUUSD → Gold-Data-{MM}-{YY}.md, BTC → BTC-Data-{MM}-{YY}.md, etc.
+"""Add completed order to per-asset monthly history file.
 
 Usage: python add_history.py ASSET ANALYST_NUM DIRECTION RESULT [PIPS]
   ASSET:        XAUUSD, BTC, EURUSD, etc.
@@ -17,19 +15,6 @@ import sys
 import os
 from datetime import datetime
 
-# Table header
-TABLE_HEADER = "| # | Type | Result | Pips |\n|---|------|--------|------|"
-
-# Asset to file prefix mapping
-ASSET_PREFIX = {
-    "XAUUSD": "Gold",
-}
-
-def get_filename(asset: str, month_num: str, year_short: str) -> str:
-    """Get per-asset filename based on asset name."""
-    prefix = ASSET_PREFIX.get(asset, asset)
-    return f"{prefix}-Data-{month_num}-{year_short}.md"
-
 def main():
     if len(sys.argv) < 5:
         print("Usage: python add_history.py ASSET ANALYST_NUM DIRECTION RESULT [PIPS]")
@@ -41,14 +26,19 @@ def main():
     result = sys.argv[4].lower()
     pips = sys.argv[5] if len(sys.argv) > 5 else "100"
 
-    # Direction string (no symbol)
-    direction_str = "SELL" if direction == "sell" else "BUY"
+    # Direction symbol
+    if direction == "sell":
+        symbol = "✷"
+    elif direction == "buy":
+        symbol = "✧"
+    else:
+        symbol = "✷"
 
     # Result string
     if result == "tp":
-        result_str = "HIT TP"
+        result_str = f"TP : {pips} Pips"
     elif result == "sl":
-        result_str = "HIT SL"
+        result_str = f"SL : 100 Pips"
     else:
         result_str = result.upper()
 
@@ -56,17 +46,16 @@ def main():
     now = datetime.now()
     month_name = now.strftime("%B").upper()
     year = now.year
-    month_num = now.strftime("%m")
-    year_short = str(year)[-2:]
+    year_month = now.strftime("%Y-%m")
 
-    # File path — per asset, separate file
+    # File path
     history_dir = os.path.expanduser("~/.hermes/market-history")
     os.makedirs(history_dir, exist_ok=True)
-    filename = get_filename(asset, month_num, year_short)
+    filename = f"{asset}_{year_month}.md"
     filepath = os.path.join(history_dir, filename)
 
-    # Table entry line
-    entry_line = f"| A{analyst_num} | {direction_str} | {result_str} | {pips} |"
+    # Entry line (bold)
+    entry_line = f"**{symbol} A{analyst_num} : {result_str}**"
 
     # Check if file exists
     if os.path.exists(filepath):
@@ -75,12 +64,10 @@ def main():
             f.write(entry_line + "\n")
         print(f"Appended to {filepath}")
     else:
-        # Create new file: plain title, blank line, table header, entry
+        # Create new file with title
         title_line = f"{asset}, {month_name} {year}"
         with open(filepath, "w") as f:
             f.write(title_line + "\n")
-            f.write("\n")
-            f.write(TABLE_HEADER + "\n")
             f.write(entry_line + "\n")
         print(f"Created {filepath}")
 
