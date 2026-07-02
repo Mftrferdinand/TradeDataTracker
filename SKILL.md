@@ -1,6 +1,6 @@
 ---
 name: TradeDataTracker
-description: Track completed trade orders (TP/SL) per asset in separate monthly .md files. XAUUSD → Gold-Data-{MM}-{YY}.md. Table format, no symbols. Send as clickable file.
+description: Data tracker for trade signals called from MarketAnalysis. Records TP/SL per asset in clean monthly tables. AI chat agent format — integrated with MarketAnalysis for end-to-end accurate data logging.
 ---
 
 # TradeDataTracker
