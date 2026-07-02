@@ -45,7 +45,10 @@ XAUUSD, JULY 2026
 - `HIT SL` = stop loss hit
 
 ## Script
-Path: `~/.hermes/skills/research/trade-data-tracker/scripts/add_history.py`
+The script is available in two locations:
+
+- **GitHub repo:** `scripts/add_history.py` (inside this repository)
+- **Hermes install path:** `~/.hermes/skills/research/trade-data-tracker/scripts/add_history.py` (after installing as a Hermes skill)
 
 Usage:
 ```
@@ -53,12 +56,14 @@ python add_history.py XAUUSD 1 sell tp 200
 python add_history.py BTC 3 buy sl 100
 ```
 
+Arguments: `ASSET ANALYST_NUM DIRECTION RESULT [PIPS]`
+
 ## GitHub
 - Repo: `TradeDataTracker`
 - Under: `mftrferdinand/TradeDataTracker`
 
 ## Process
 1. Determine: asset, analyst number, direction, result (TP + pips or SL)
-2. Run: `python ~/.hermes/skills/research/trade-data-tracker/scripts/add_history.py {ASSET} {N} {DIR} {RESULT} {PIPS}`
+2. Run: `python add_history.py {ASSET} {N} {DIR} {RESULT} {PIPS}`
 3. Script creates/updates file at `~/.hermes/market-history/{filename}.md`
 4. Send file: `MEDIA:~/.hermes/market-history/{filename}.md`
