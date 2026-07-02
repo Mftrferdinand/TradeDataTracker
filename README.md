@@ -1,10 +1,10 @@
 # TradeDataTracker
 
-**Data tracker for trade signals called from MarketAnalysis.** Records TP/SL results per asset in structured monthly markdown files with clean table format. Designed for AI chat agents — integrated with MarketAnalysis for end-to-end signal tracking.
+**Data tracker untuk sinyal yang di-call dari MarketAnalysis — catat hasil TP/SL ke data lengkap per aset per bulan.** Format tabel rapi untuk AI chat agent. Saling berhubungan dengan MarketAnalysis untuk pengambilan data trading yang akurat.
 
 This tool works in tandem with [MarketAnalysis](https://github.com/Mftrferdinand/MarketAnalysis):
-- **MarketAnalysis** → generates structured trade signals with entry, TP, SL
-- **TradeDataTracker** → records when those signals hit TP or SL
+- **MarketAnalysis** → full market analysis with Astronacci + Fibonacci. Structured format for AI chat agent — detailed research, live entries, tight risk management (TP/SL). Scripts for accurate and comprehensive market analysis across all assets.
+- **TradeDataTracker** → data tracker for signals called from MarketAnalysis. Records TP/SL per asset in clean monthly tables. AI chat agent format — integrated with MarketAnalysis for end-to-end accurate data logging.
 
 Together they form a complete chat AI agent workflow: signal → execution → data logging.
 
