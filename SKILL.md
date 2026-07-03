@@ -19,13 +19,13 @@ Every order that hits TP or SL gets recorded in a per-asset, per-month .md file.
 XAUUSD, JULY 2026
 **✷ A1 : TP : 200 Pips**
 **✷ A2 : SL : 100 Pips**
-**✧ A3 : TP : 1000 Pips**
+**✷ A3 : TP : 1000 Pips**
 ```
 
 ### Format Rules
 - Title line: `{ASSET}, {MONTH} {YEAR}` — plain text, NO bold
 - Entry lines: `**{symbol} A{N} : {result}**` — bold
-- ✷ = SELL, ✧ = BUY
+- ✷ digunakan untuk SELL dan BUY (tidak ada ✧ lagi — sinkron dengan MarketAnalysis)
 - TP format: `TP : {pips} Pips` (100, 200, 500, 1000)
 - SL format: `SL : 100 Pips`
 - One entry per line
@@ -75,7 +75,7 @@ When user asks "history xauusd", "history btc", "lihat history":
 
 ## Integration with MarketAnalysis-FormatChatAiAgent
 - Analyst numbers must match between analysis skill and history tracker
-- Direction (✷/✧) must match original analysis
+- ✷ digunakan untuk SELL dan BUY — sinkron dengan MarketAnalysis (tidak ada ✧)
 - When new analysis is created and previous order completed, add previous order to history BEFORE creating new analysis
 - History files are per-asset, per-month — never mix assets in one file
 

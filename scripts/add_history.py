@@ -26,13 +26,8 @@ def main():
     result = sys.argv[4].lower()
     pips = sys.argv[5] if len(sys.argv) > 5 else "100"
 
-    # Direction symbol
-    if direction == "sell":
-        symbol = "✷"
-    elif direction == "buy":
-        symbol = "✧"
-    else:
-        symbol = "✷"
+    # Direction symbol — ✷ for both sell and buy (synchronized with MarketAnalysis v3)
+    symbol = "✷"
 
     # Result string
     if result == "tp":

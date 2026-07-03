@@ -1,59 +1,50 @@
 # TradeDataTracker
 
-**Data tracker for signals called from MarketAnalysis — records TP/SL results into complete per-asset monthly data.** Clean table format for AI chat agents. Interconnected with MarketAnalysis for accurate trading data logging.
+**Data tracker for signals from MarketAnalysis — records TP/SL results into per-asset monthly data.** Clean format for AI chat agents. Synchronized with MarketAnalysis v3 final format.
 
 This tool works in tandem with [MarketAnalysis](https://github.com/Mftrferdinand/MarketAnalysis):
-- **MarketAnalysis** → Full market analysis with Astronacci + Fibonacci. Structured format for AI chat agent — detailed research, live entries, tight risk management (TP/SL). Scripts for accurate and comprehensive market analysis across all assets.
-- **TradeDataTracker** → Data tracker for signals called from MarketAnalysis. Records TP/SL per asset in clean monthly tables. AI chat agent format — integrated with MarketAnalysis for end-to-end accurate data logging.
-
-Together they form a complete chat AI agent workflow: signal → execution → data logging.
+- **MarketAnalysis** → Full market analysis with Astronacci + Fibonacci. Structured format for AI chat agent — detailed research, entry areas with fixed RR, tight risk management.
+- **TradeDataTracker** → Records every TP/SL result. Uses ✷ for both SELL and BUY (synchronized with MarketAnalysis v3 update).
 
 ## Features
 
-- **Per-asset tracking** — separate files per asset (XAUUSD → Gold-Data, BTC → BTC-Data, etc.)
-- **Clean table format** — `| # | Type | Result | Pips |` with no symbols
-- **Monthly organization** — `Gold-Data-07-26.md`, `BTC-Data-07-26.md`
-- **Accurate data logging** — every entry recorded with analyst number, direction, and pip result
+- **Per-asset tracking** — separate files per asset
+- **✷ for both directions** — synchronized with MarketAnalysis (no ✧)
+- **Monthly organization** — `XAUUSD_2026-07.md`, `BTC_2026-07.md`
 - **AI-ready** — structured format parseable by any chat AI agent
 
 ## File Naming
 
 | Asset | File Name |
 |-------|-----------|
-| XAUUSD | `Gold-Data-{MM}-{YY}.md` |
-| BTC | `BTC-Data-{MM}-{YY}.md` |
-| EURUSD | `EURUSD-Data-{MM}-{YY}.md` |
-| Any asset | `{ASSET}-Data-{MM}-{YY}.md` |
+| XAUUSD | `XAUUSD_{YYYY}-{MM}.md` |
+| BTC | `BTC_{YYYY}-{MM}.md` |
+| EURUSD | `EURUSD_{YYYY}-{MM}.md` |
+| Any asset | `{ASSET}_{YYYY}-{MM}.md` |
 
 ## Format
 
 ```
 XAUUSD, JULY 2026
-
-| # | Type | Result | Pips |
-|---|------|--------|------|
-| A1 | SELL | HIT TP | 200 |
-| A2 | SELL | HIT SL | 100 |
+**✷ A1 : TP : 200 Pips**
+**✷ A2 : SL : 100 Pips**
+**✷ A3 : TP : 1000 Pips**
 ```
 
-## Clean UI
-
-Table format is lightweight, no bold/blockquote/symbols — just pure data. Easy to read on any platform (Telegram, Discord, terminal, GitHub).
+- ✷ untuk SELL dan BUY (sama dengan MarketAnalysis — tidak ada ✧)
+- Bold entry lines, plain title
+- `TP : {pips} Pips` atau `SL : 100 Pips`
+- Append new entries at the end
 
 ## Usage
 
-**Add a trade result:**
-```bash
+```
 python scripts/add_history.py XAUUSD 1 sell tp 200
-python scripts/add_history.py BTC 2 buy sl 50
+python scripts/add_history.py BTC 3 buy sl 100
 ```
 
-Arguments: `ASSET ANALYST_NUM DIRECTION RESULT PIPS`
-
-## Skill
-
-For Hermes Agent: install the skill and it automatically records TP/SL results on your command.
+Arguments: `ASSET ANALYST_NUM DIRECTION RESULT [PIPS]`
 
 ## Related
 
-- [MarketAnalysis](https://github.com/Mftrferdinand/MarketAnalysis) — Market analysis with Astronacci + Fibonacci, generates the signals that TradeDataTracker logs
+- [MarketAnalysis](https://github.com/Mftrferdinand/MarketAnalysis) — generates the signals that TradeDataTracker logs
