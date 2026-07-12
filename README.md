@@ -38,12 +38,12 @@ XAUUSD, JULY 2026
 - Title: `{ASSET}, {MONTH} {YEAR}` — plain text
 - Empty line after title
 - Table with 4 columns: `#`, `Type`, `Result`, `Pips`
-- ✷ untuk SELL dan BUY (sama dengan MarketAnalysis — tidak ada ✧)
+- ✷ for both SELL and BUY (same as MarketAnalysis — no ✧)
 - `Type` column: `✷ SELL` or `✷ BUY`
 - `Result` column: `TP` or `SL`
 - `Pips` column: numbers only (100, 200, 500, 1000)
 - Append new rows at the end of table
-- File dikirim via MEDIA: path ke user
+- File sent via MEDIA: path to user
 
 ## Result Labels
 
@@ -64,14 +64,14 @@ python scripts/add_history.py BTC 3 buy sl 100
 
 Arguments: `ASSET ANALYST_NUM DIRECTION RESULT [PIPS]`
 
-**Note:** Script format menggunakan bold entry style lama. Saat ini data di-append manual ke file oleh gue sebagai Hermes agent.
+**Note:** Script format uses the old bold entry style. Currently data is appended manually to files by me as a Hermes agent.
 
 ## Viewing History
 
-User bilang "history xauusd" atau "lihat history":
-1. Gue cek file `{ASSET}_{YYYY}-{MM}.md`
-2. Kirim via MEDIA: path
-3. Kalau belum ada: "belum ada history untuk {ASSET} bulan ini"
+User says "history xauusd" or "lihat history":
+1. I check file `{ASSET}_{YYYY}-{MM}.md`
+2. Send via MEDIA: path
+3. If not found: "no history yet for {ASSET} this month"
 
 ## Related
 
